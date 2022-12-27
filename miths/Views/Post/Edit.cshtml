@@ -1,0 +1,32 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model miths.Models.Post.EditPostModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="~/css/index.css">
+    <link rel="stylesheet" type="text/css" href="~/css/login.css">
+</head>
+<body>
+<div class="container main_item">
+    <form class="container register" action="~/Post/Edit" method="post" enctype="multipart/form-data">
+        <div class="title_reg">Add Post</div>
+        <input type="hidden" asp-for="Id" value="@Model.Id"/>
+        <input type="text" asp-for="Title" value="@Model.Title" placeholder="Enter post name">
+        <input type="text" asp-for="Category" value="@Model.Category" placeholder="Enter post category">
+        <input type="file" asp-for="Image" name="Image">
+        <img src="../@Model.CurrentImage"/>
+        <textarea rows="5" asp-for="MarkDown" cols="35" class="markdown">@Model.MarkDown</textarea>
+        <input type="submit" value="Add post" class="register_btn">
+        <div class="errors">
+        @foreach (var error in ViewBag.errors)
+        {
+            <div class="error">@error</div>
+        }
+        </div>
+    </form>
+</div>
+</body>
+</html>

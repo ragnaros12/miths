@@ -1,0 +1,63 @@
+@using Markdig
+@model miths.Models.Post
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Myths | Greek Mythology</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/css/header.css"/>
+    <link rel="stylesheet" type="text/css" href="~/css/index.css"/>
+</head>
+<body>
+<div class="container post_wrapper">
+    <div class="post__wrapper">
+        <div class="time">@Model.CreationDate.Day.@Model.CreationDate.Month</div>
+        <div class="name">@Model.Title</div>
+        @if (ViewBag.IsAdmin != null)
+        {
+            @if (ViewBag.IsAdmin)
+            {
+                <a href="~/Post/Edit?id=@Model.Id">Edit post</a>
+            }
+        }
+        <img src="../@Model.MainImage" class="post_image">
+        <div class="post_text">@Html.Raw(Markdown.ToHtml(Model.MarkDown))</div>
+        <div class="line_light no-margin"></div>
+        <div class="post__data">
+            <div>@Model.Views views</div>
+            <div>@Model.Comments.Count comments</div>
+            <div class="end">@Model.Category</div>
+        </div>
+        <a class="line_light no-margin" id="#messages"></a>
+        @if (ViewBag.User != null)
+        {
+            <form class="input_data" action="~/Post/Comment" method="POST">
+                <input type="hidden" id="IdPost" value="@Model.Id" name="IdPost"/>
+                <textarea class="input_message" rows="2" cols="35" id="Message" name="Message"></textarea>
+                <input type="submit" value="comment">
+            </form>
+            <div class="erros">
+                @foreach (var error in ViewBag.errors)
+                {
+                    <div class="error">@error</div>
+                }
+            </div>
+        }
+        <div class="comments container">
+            @{ Model.Comments.Sort((u1, u) => DateTime.Compare(u.CreationDate, u1.CreationDate)); }
+            @foreach (var message in Model.Comments)
+            {
+                <div class="comment">
+                    <div class="author_text">@message.Author.UserName @message.CreationDate.ToString("hh:mm:ss dd.MM.yyyy")</div>
+                    <div class="message">@message.Message</div>
+                    <div class="line_light no-margin"></div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

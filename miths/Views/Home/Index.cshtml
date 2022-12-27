@@ -1,0 +1,105 @@
+@model miths.Models.ShowPosts
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Myths | Greek Mythology</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container main_page">
+    <div class="main_page_wrapper">
+        <h1>Mount Olympus</h1>
+        <div class="light_text main_page_texts">
+            <div>Breathtaking journey to one of the</div>
+            <div>most significant sights in ancient</div>
+            <div>history</div>
+        </div>
+        <div class="light_text main_page_bottom">
+            Myths of Ancient Greece
+        </div>
+    </div>
+</div>
+<div class="container posts">
+    <h2 class="title">Posts</h2>
+    <div class="line"></div>
+    <div class="categories_wrapper">
+        @foreach (var cat in Model.Categories)
+        {
+            <a href="~/Home/Index?category=@cat">@cat</a>
+        }
+    </div>
+    <div class="line"></div>
+    <div class="posts_wrapper">
+        @foreach (var post in Model.Posts)
+        {
+            <a href="~/Post/Post?id=@post.Id">
+                <div class="post" style='background: url("../@post.MainImage") center center/cover no-repeat'>
+                    <div class="post_info">
+                        <div class="post_data">
+                            <div class="post_user">@post.User.UserName</div>
+                            <div class="post_date">@post.CreationDate.Day.@post.CreationDate.Month</div>
+                        </div>
+                        <img class="post_share" src="~/images/share.png">
+                    </div>
+                    <div class="post_info_">
+                        <div class="post_category">@post.Category</div>
+                        <div class="post_title">@post.Title</div>
+                        <div class="line1"></div>
+                        <div class="post_views">
+                            <img class="views" src="~/images/views.png"/>
+                            <div class="views_text">@post.Views</div>
+                            <img class="views" src="~/images/chat.png">
+                            <div class="views_text">@post.Comments.Count</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+    <div class="posts_nav">
+        <a href="~/Home/Index?page=@(Model.page - 1)@Model.Category">Previous</a>
+        <a href="~/Home/Index?page=@(Model.page + 1)@Model.Category">Next</a>
+    </div>
+</div>
+<div class="container about_us">
+    <div class="line_light"></div>
+    <div class="title" style="margin-top: 0">About us</div>
+    <div class="line_light"></div>
+
+    <div class="author">
+        <div class="author_info">
+            <div class="author_name">Hi, I'm Dan!</div>
+            <div class="author_profession">Creator and writer</div>
+            <div class="author_desc">I'm 17 years old. I have been interested in Greek mythology since 6. I enjoy reading about this topic, learning, and sharing my knowledge with others.
+            </div>
+        </div>
+        <img src="~/images/author.webp" class="author_image">
+    </div>
+    
+    <div class="author">
+            <div class="author_info">
+                <div class="author_name">Hi, I'm Sydney!</div>
+                <div class="author_profession">Writer</div>
+                <div class="author_desc">I'm 15 years old. I've been interested in mythology of all kinds for many years. I love learning how stories were developed, and their relationship to different cultures. </div>
+            </div>
+        <img src="~/images/author1.webp" class="author_image1">
+    </div>
+</div>
+<div class="container links">
+    <div class="line_light"></div>
+    <div class="title" style="margin-top: 0">Link to interesting pages</div>
+    <div class="line_light"></div>
+    
+    
+    <div class="links_wrapper">
+        <img src="~/images/links.webp" class="links_container">
+        <div class="links_cont">
+            <div class="link_text">Use this link to get access to the video with a great choice of Greek mythology theme music</div>
+            <img src="~/images/youtube.webp" class="youtube">
+        </div>
+    </div>
+</div>
+</body>
+</html>

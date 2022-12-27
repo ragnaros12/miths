@@ -1,0 +1,37 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model miths.Models.User.LoginUserModel
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="~/css/login.css">
+</head>
+<body>
+<div class="container main_item">
+    <form class="container register" action="~/Account/Login" method="post">
+        <div class="title_reg">Login</div>
+      
+        <input type="text" placeholder="Enter nick" asp-for="Email" autocomplete="off">
+        <input type="password" placeholder="Enter password" asp-for="Password" autocomplete="off">
+        
+        <input type="submit" value="Login" class="register_btn">
+        
+        <div class="errors">
+            @foreach (var error in ViewBag.errors)
+            {
+                <div class="error">@error</div>
+            }
+        </div>
+        <a href="Register">Not have account? Create</a>
+
+    </form>
+</div>
+</body>
+</html>
+
+
+
+

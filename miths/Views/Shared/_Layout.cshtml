@@ -1,0 +1,42 @@
+﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="~/css/header.css"/>
+    <link rel="stylesheet" type="text/css" href="~/css/index.css"/>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+<div class="container header">
+    @if (ViewBag.IsAdmin != null)
+    {
+        if (ViewBag.IsAdmin)
+        {
+            <div class="account_admin">
+                <a class="add_post123" href="~/Post/Add">Add post</a>
+            </div>
+        }
+    }
+    <div class="account_info">
+        <img class="account_image" src="~/images/user.png" alt="">
+        <div class="account_title">
+            @if (ViewBag.user == null)
+            {
+                <a href="~/Account/Login">Log in</a>
+            }
+            else
+            {
+                <div>@ViewBag.User.UserName</div>
+                <a href="~/Account/Logout">Logout</a>
+            }
+        </div>
+    </div>
+</div>
+
+@RenderBody()
+
+
+</body>
+</html>

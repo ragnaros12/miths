@@ -1,0 +1,42 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model miths.Models.User.CreateUserModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="~/css/login.css">
+</head>
+<body>
+<div class="container main_item">
+    <form class="container register" action="~/Account/Register" method="post">
+        <div class="title_reg">Registration</div>
+      
+        <input type="email" placeholder="Enter email" asp-for="Email" autocomplete="off">
+        <input type="text" placeholder="Enter userName" asp-for="UserName" autocomplete="off">
+
+        <input type="password" placeholder="Enter password" asp-for="Password" autocomplete="off">
+        <input type="password" placeholder="Confirm password" asp-for="ConfirmPassword" autocomplete="off">
+      
+        <div>
+            <input type="checkbox" asp-for="IsSend">
+            <label class="sends">Send me new publishing</label>
+        </div>
+        <input type="submit" value="Register" class="register_btn">
+        
+        <a href="Login">Already have account? Login</a>
+        
+        <div class="errors">
+            @foreach (var error in ViewBag.errors)
+            {
+                <div class="error">@error</div>
+            }
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
+
+

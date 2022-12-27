@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\khlop\RiderProjects\miths\miths\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2022-12-25T17:58:29.8060544Z;True|2022-12-25T20:56:47.6811651+03:00;True|2022-12-25T20:53:00.8917303+03:00;True|2022-12-25T20:48:19.5986264+03:00;True|2022-12-25T20:42:13.4009699+03:00;True|2022-12-25T18:50:00.7412576+03:00;True|2022-12-25T18:25:36.0971868+03:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>
